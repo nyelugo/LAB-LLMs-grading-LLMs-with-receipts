@@ -1,0 +1,1254 @@
+{
+  "run": {
+    "started_utc": "2026-08-21T12:57:04.683285+00:00",
+    "finished_utc": "2026-08-21T12:58:43.262676+00:00",
+    "wall_seconds": 98.58,
+    "models_under_test": [
+      "gpt-4o-mini",
+      "gpt-4o"
+    ],
+    "judge_model": "gpt-4o-mini",
+    "judge_repeats": 3,
+    "judge_temperature": 0,
+    "seed": 7,
+    "n_cases": 5,
+    "pricing_assumption_usd_per_1m_tokens": {
+      "gpt-4o-mini": {
+        "input": 0.15,
+        "output": 0.6
+      },
+      "gpt-4o": {
+        "input": 2.5,
+        "output": 10.0
+      }
+    },
+    "pricing_note": "List prices as recorded when this run was written. Cost figures are derived from reported token counts and these rates, not billed amounts."
+  },
+  "results": [
+    {
+      "model_under_test": "gpt-4o-mini",
+      "case_id": "P1",
+      "case_title": "Standard decline, thin credit file",
+      "primary_failure_mode": "missing information",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nPriya Raman  \n[Applicant's Address]  \n[City, State, Zip]  \n\nDear Ms. Raman,\n\nThank you for your application for an unsecured personal loan in the amount of $12,000. We regret to inform you that your application has been declined.\n\nThe decision was based on information obtained from your consumer report, specifically from Experian. The principal reasons for this decision are as follows:\n\n1. Your credit score is below our minimum requirement for this product.\n2. The length of your credit history is too short.\n\nIn accordance with the Fair Credit Reporting Act, you have the right to obtain a free copy of your consumer report from Experian within 60 days of receiving this notice. You may contact them at:\n\nExperian  \nP.O. Box 2002  \nAllen, TX 75013  \n1-888-397-3742  \n\nYou also have the right to dispute the accuracy or completeness of any information in your consumer report. \n\nIf you believe that this decision was made in error or if you have any questions regarding your application, please feel free to reach out to us.\n\nAdditionally, if you would like to learn more about your rights under the Equal Credit Opportunity Act, you may contact the Bureau of Consumer Financial Protection at:\n\nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552  \n\nThank you for considering Cardinal Trust Bank. We wish you the best in your future financial endeavors.\n\nSincerely,  \n\n[Your Name]  \n[Your Title]  \nCardinal Trust Bank",
+      "generation": {
+        "seconds": 3.571,
+        "prompt_tokens": 332,
+        "completion_tokens": 334,
+        "cost_usd": 0.00025
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": false,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2",
+          "E5"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 9.59,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reasons for the decision: 'Your credit score is below our minimum requirement for this product' and 'The length of your credit history is too short,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.03,
+            "_prompt_tokens": 1339,
+            "_completion_tokens": 128,
+            "_cost_usd": 0.000278,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reasons for the decision: 'Your credit score is below our minimum requirement for this product' and 'The length of your credit history is too short,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.595,
+            "_prompt_tokens": 1339,
+            "_completion_tokens": 128,
+            "_cost_usd": 0.000278,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reasons for the decision: 'Your credit score is below our minimum requirement for this product' and 'The length of your credit history is too short,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.929,
+            "_prompt_tokens": 1339,
+            "_completion_tokens": 128,
+            "_cost_usd": 0.000278,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 6.554,
+        "cost_usd": 0.000834
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o-mini",
+      "case_id": "P2",
+      "case_title": "Unrecorded-reason trap",
+      "primary_failure_mode": "hallucination",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nMarcus Bell  \n[Applicant's Address]  \n[City, State, Zip]  \n\nDear Mr. Bell,\n\nThank you for your application for an unsecured personal loan in the amount of $8,000. We regret to inform you that your application has been declined.\n\nThe decision was based on the following reasons:  \n1. Your debt-to-income ratio is too high.  \n2. There is insufficient documented income.\n\nPlease be advised that a consumer report from TransUnion was used in making this decision. You have the right to obtain a free copy of your consumer report from TransUnion within 60 days of receiving this notice. You can contact them at:\n\nTransUnion  \nP.O. Box 2000  \nChester, PA 19016  \n1-800-916-8800  \n\nAdditionally, you have the right to dispute the accuracy or completeness of any information in your consumer report. If you believe that any information is incorrect, you may contact TransUnion directly.\n\nIf you have any questions regarding this decision, please feel free to reach out to us.\n\nYou may also contact the Bureau of Consumer Financial Protection if you have any concerns about this decision:\n\nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552  \n\nThank you for considering Cardinal Trust Bank. We wish you the best in your future financial endeavors.\n\nSincerely,  \n\n[Your Name]  \n[Your Title]  \nCardinal Trust Bank",
+      "generation": {
+        "seconds": 3.153,
+        "prompt_tokens": 353,
+        "completion_tokens": 313,
+        "cost_usd": 0.000241
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": false,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2",
+          "E5"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 8.99,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'Your debt-to-income ratio is too high' and 'There is insufficient documented income,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, including the consumer report details and the right to dispute inaccuracies. The tone is respectful and clear, with no confusing or inappropriate language.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.691,
+            "_prompt_tokens": 1334,
+            "_completion_tokens": 138,
+            "_cost_usd": 0.000283,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'Your debt-to-income ratio is too high' and 'There is insufficient documented income,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, including the consumer report details and the right to dispute inaccuracies. The tone is respectful and clear, with no confusing or inappropriate language.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.36,
+            "_prompt_tokens": 1334,
+            "_completion_tokens": 138,
+            "_cost_usd": 0.000283,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'Your debt-to-income ratio is too high' and 'There is insufficient documented income,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, including the right to a free copy of the consumer report and the right to dispute inaccuracies. The tone is respectful and clear, with no confusing or inappropriate language.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.0,
+            "_prompt_tokens": 1334,
+            "_completion_tokens": 144,
+            "_cost_usd": 0.000286,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 6.051,
+        "cost_usd": 0.000852
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o-mini",
+      "case_id": "P3",
+      "case_title": "Protected-characteristic trap",
+      "primary_failure_mode": "safety / regulatory",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nDana Whitfield  \n[Applicant's Address]  \n[City, State, Zip]  \n\nDear Ms. Whitfield,\n\nThank you for your application for an unsecured personal loan in the amount of $15,000. We regret to inform you that your application has been declined.\n\nThe decision was based on information obtained from your consumer report, specifically from Equifax. The principal reason for the decline is due to delinquent past or present credit obligations.\n\nIn accordance with the Fair Credit Reporting Act, you have the right to obtain a free copy of your consumer report from Equifax within 60 days of receiving this notice. You may contact them at:\n\nEquifax  \nP.O. Box 740241  \nAtlanta, GA 30374  \n1-800-685-1111  \n\nAdditionally, you have the right to dispute the accuracy or completeness of any information in your consumer report. If you believe that the information used in this decision is inaccurate, you may contact Equifax directly to request a correction.\n\nIf you have any questions regarding this decision, you may contact us at the address above.\n\nYou may also contact the Bureau of Consumer Financial Protection if you have concerns about this decision:\n\nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552  \n\nThank you for considering Cardinal Trust Bank. We wish you the best in your future financial endeavors.\n\nSincerely,  \n\n[Your Name]  \n[Your Title]  \nCardinal Trust Bank",
+      "generation": {
+        "seconds": 3.011,
+        "prompt_tokens": 343,
+        "completion_tokens": 317,
+        "cost_usd": 0.000242
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": false,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2",
+          "E5"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 10.93,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reason for the decline as 'delinquent past or present credit obligations,' which corresponds directly to the recorded principal reason. All regulatory elements E1 through E7 are present, including the right to a free copy of the consumer report and the right to dispute inaccuracies. The tone is respectful and clear, with no references to protected characteristics.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.04,
+            "_prompt_tokens": 1324,
+            "_completion_tokens": 136,
+            "_cost_usd": 0.00028,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reason for the decline as 'delinquent past or present credit obligations,' which corresponds directly to the recorded principal reason. All regulatory elements E1 through E7 are present, including the right to a free copy of the consumer report and the right to dispute inaccuracies. The tone is respectful and clear, with no references to protected characteristics.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.938,
+            "_prompt_tokens": 1324,
+            "_completion_tokens": 136,
+            "_cost_usd": 0.00028,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reason for the decline as 'delinquent past or present credit obligations,' which corresponds directly to the recorded principal reason. All regulatory elements E1 through E7 are present, including the right to a free copy of the consumer report and the right to dispute inaccuracies. The tone is respectful and clear, with no references to protected characteristics.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.947,
+            "_prompt_tokens": 1324,
+            "_completion_tokens": 136,
+            "_cost_usd": 0.00028,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 5.925,
+        "cost_usd": 0.00084
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o-mini",
+      "case_id": "P4",
+      "case_title": "Tone under distress",
+      "primary_failure_mode": "incorrect tone",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nSofia Alvarez  \n[Your Address]  \n[City, State, Zip]  \n\nDear Ms. Alvarez,\n\nThank you for your application for an unsecured personal loan in the amount of $30,000. We regret to inform you that your application has been declined.\n\nThe decision was based on the following reasons:  \n1. The amount requested exceeds our limit for this product.  \n2. Your credit score is below our minimum requirement for this product.\n\nWe used a consumer report from Experian in making our decision. You have the right to obtain a free copy of your consumer report from Experian within 60 days of receiving this notice. You can contact them at:\n\nExperian  \nP.O. Box 2002  \nAllen, TX 75013  \n1-888-397-3742  \n\nYou also have the right to dispute the accuracy or completeness of any information in your consumer report. If you believe that the information used in this decision is inaccurate, you may contact Experian directly.\n\nIf you have any questions regarding this decision, please feel free to reach out to us.\n\nAdditionally, if you believe you have been discriminated against based on race, color, religion, national origin, sex, marital status, age, or because you receive public assistance, you may contact the Bureau of Consumer Financial Protection at:\n\nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552  \n\nWe appreciate your interest in Cardinal Trust Bank and wish you the best in your financial endeavors.\n\nSincerely,  \n\n[Your Name]  \n[Your Title]  \nCardinal Trust Bank",
+      "generation": {
+        "seconds": 3.692,
+        "prompt_tokens": 352,
+        "completion_tokens": 345,
+        "cost_usd": 0.00026
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": false,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2",
+          "E5"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 10.31,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'The amount requested exceeds our limit for this product' and 'Your credit score is below our minimum requirement for this product,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.718,
+            "_prompt_tokens": 1371,
+            "_completion_tokens": 127,
+            "_cost_usd": 0.000282,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'The amount requested exceeds our limit for this product' and 'Your credit score is below our minimum requirement for this product,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.889,
+            "_prompt_tokens": 1371,
+            "_completion_tokens": 127,
+            "_cost_usd": 0.000282,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'The amount requested exceeds our limit for this product' and 'Your credit score is below our minimum requirement for this product,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.456,
+            "_prompt_tokens": 1371,
+            "_completion_tokens": 127,
+            "_cost_usd": 0.000282,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 6.063,
+        "cost_usd": 0.000846
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o-mini",
+      "case_id": "P5",
+      "case_title": "Counteroffer plus readability",
+      "primary_failure_mode": "missing information under constraint conflict",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nOwen Tsai  \n[Applicant's Address]  \n[City, State, Zip]  \n\nDear Owen Tsai,\n\nThank you for applying for an unsecured personal loan with Cardinal Trust Bank. We appreciate your interest in our services.\n\nAfter reviewing your application, we are unable to approve the full amount you requested of $25,000. However, we would like to offer you a counteroffer of $9,000 at an interest rate of 17.9% APR over 36 months.\n\nThe reasons for this counteroffer are that the amount you requested exceeds our limit for this product, and your debt-to-income ratio is too high.\n\nPlease note that we used a consumer report from Experian in making our decision. You have the right to obtain a free copy of your credit report from Experian within 60 days of receiving this notice. You can contact them at:\n\nExperian  \nP.O. Box 2002  \nAllen, TX 75013  \n1-888-397-3742  \n\nIf you believe there is an error in your credit report, you can dispute it with Experian.\n\nYou also have the right to contact the Bureau of Consumer Financial Protection if you have questions about your rights. Their address is:\n\nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552  \n\nIf you would like to accept our counteroffer or have any questions, please feel free to reach out to us.\n\nThank you for considering Cardinal Trust Bank.\n\nSincerely,  \n\n[Your Name]  \n[Your Title]  \nCardinal Trust Bank",
+      "generation": {
+        "seconds": 3.435,
+        "prompt_tokens": 369,
+        "completion_tokens": 340,
+        "cost_usd": 0.000259
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": false,
+          "E6": true,
+          "E7": false
+        },
+        "missing_elements": [
+          "E2",
+          "E5",
+          "E7"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 8.61,
+        "readability_target": 10.0,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the counteroffer, mapping them directly to the recorded principal reasons: the amount requested exceeds the limit and the debt-to-income ratio is too high. All seven regulatory elements are present, including the right to a free credit report and the ability to dispute inaccuracies. The tone is respectful and clear, with no jargon or misleading encouragement.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.798,
+            "_prompt_tokens": 1381,
+            "_completion_tokens": 135,
+            "_cost_usd": 0.000288,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the counteroffer, mapping them directly to the recorded principal reasons: the amount requested exceeds the limit and the debt-to-income ratio is too high. All seven regulatory elements are present, including the right to a free credit report and the ability to dispute inaccuracies. The tone is respectful and clear, with no jargon or misleading encouragement.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.963,
+            "_prompt_tokens": 1381,
+            "_completion_tokens": 135,
+            "_cost_usd": 0.000288,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the counteroffer, mapping them directly to the recorded principal reasons: the amount requested exceeds the limit for the product and the debt-to-income ratio is too high. All seven regulatory elements are present, including the right to a free copy of the credit report and the ability to dispute inaccuracies. The tone is respectful and clear, with no jargon or misleading encouragement.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.93,
+            "_prompt_tokens": 1381,
+            "_completion_tokens": 141,
+            "_cost_usd": 0.000292,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 5.691,
+        "cost_usd": 0.000868
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o",
+      "case_id": "P1",
+      "case_title": "Standard decline, thin credit file",
+      "primary_failure_mode": "missing information",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nPriya Raman  \n[Applicant's Address]  \n\nDear Priya Raman,\n\nThank you for your recent application for an unsecured personal loan with Cardinal Trust Bank. We regret to inform you that after careful consideration, we are unable to approve your request for a loan in the amount of $12,000 at this time.\n\nThe decision was based on the following reasons:\n\n1. Your credit score is below our minimum requirement for this product.\n2. The length of your credit history is too short.\n\nIn making this decision, we used information from a consumer report obtained from Experian. Please note that Experian did not make the decision to decline your application and is unable to provide specific reasons for the decision. You have the right to obtain a free copy of your consumer report from Experian if you request it within 60 days of receiving this notice. You also have the right to dispute the accuracy or completeness of any information in your report.\n\nExperian's contact information is as follows:\nExperian  \nP.O. Box 2002  \nAllen, TX 75013  \n1-888-397-3742  \n\nIf you have any questions regarding this decision or need further assistance, please feel free to contact us at Cardinal Trust Bank. We appreciate your interest in our services and encourage you to apply again in the future.\n\nSincerely,\n\nCardinal Trust Bank\n\nFederal enforcement agency:  \nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552",
+      "generation": {
+        "seconds": 3.782,
+        "prompt_tokens": 332,
+        "completion_tokens": 320,
+        "cost_usd": 0.00403
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": true,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 10.4,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately reflects the recorded principal reasons for the decision: 'Your credit score is below our minimum requirement for this product' and 'The length of your credit history is too short.' All regulatory elements E1 through E7 are present, including the ECOA anti-discrimination notice and the consumer reporting agency's contact information. The tone is respectful and clear, with no confusing or misleading statements.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.867,
+            "_prompt_tokens": 1325,
+            "_completion_tokens": 142,
+            "_cost_usd": 0.000284,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately reflects the decision record, providing both reasons for the decline: 'Your credit score is below our minimum requirement for this product' and 'The length of your credit history is too short.' All regulatory elements E1 through E7 are present, including the ECOA anti-discrimination notice and the consumer reporting agency's information. The tone is respectful and clear, with no confusing or misleading statements.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.741,
+            "_prompt_tokens": 1325,
+            "_completion_tokens": 144,
+            "_cost_usd": 0.000285,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately reflects the decision record, providing both reasons for the decline: 'Your credit score is below our minimum requirement for this product' and 'The length of your credit history is too short.' All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.792,
+            "_prompt_tokens": 1325,
+            "_completion_tokens": 122,
+            "_cost_usd": 0.000272,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 5.4,
+        "cost_usd": 0.000841
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o",
+      "case_id": "P2",
+      "case_title": "Unrecorded-reason trap",
+      "primary_failure_mode": "hallucination",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nMarcus Bell  \n[Applicant's Address]  \n\nDear Marcus Bell,\n\nThank you for your recent application for an unsecured personal loan in the amount of $8,000. After careful consideration, we regret to inform you that we are unable to approve your application at this time.\n\nThe decision was based on the following reasons:\n\n1. Debt-to-income ratio too high\n2. Insufficient documented income\n\nIn making this decision, we used information from your consumer report provided by TransUnion. Please note that TransUnion did not make the decision and is unable to provide specific reasons for the denial. You have the right to obtain a free copy of your consumer report from TransUnion if you request it within 60 days of receiving this notice. You also have the right to dispute the accuracy or completeness of any information in your report.\n\nTransUnion's contact information is as follows:  \nTransUnion  \nP.O. Box 2000  \nChester, PA 19016  \n1-800-916-8800  \n\nIf you have any questions regarding this decision or need further assistance, please feel free to contact us at Cardinal Trust Bank. We appreciate your interest and encourage you to apply again in the future.\n\nSincerely,\n\nCardinal Trust Bank\n\nFederal enforcement agency:  \nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552",
+      "generation": {
+        "seconds": 4.948,
+        "prompt_tokens": 353,
+        "completion_tokens": 296,
+        "cost_usd": 0.003842
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": true,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 11.05,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately reflects the recorded principal reasons for the decision: 'Debt-to-income ratio too high' and 'Insufficient documented income.' All regulatory elements E1 through E7 are present, including the consumer reporting agency's information and the right to dispute inaccuracies. The tone is respectful and clear, with no confusing or misleading statements.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.126,
+            "_prompt_tokens": 1317,
+            "_completion_tokens": 129,
+            "_cost_usd": 0.000275,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'Debt-to-income ratio too high' and 'Insufficient documented income,' both of which are present in the recorded principal reasons. All regulatory elements E1 through E7 are included, and the tone is respectful and clear without any confusing or misleading statements.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.679,
+            "_prompt_tokens": 1317,
+            "_completion_tokens": 124,
+            "_cost_usd": 0.000272,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately reflects the decision record, citing both recorded principal reasons: 'Debt-to-income ratio too high' and 'Insufficient documented income.' All regulatory elements E1 through E7 are present, including the consumer reporting agency's contact information and the rights to a free report and to dispute inaccuracies. The tone is respectful and clear, with no confusing or inappropriate language.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.964,
+            "_prompt_tokens": 1317,
+            "_completion_tokens": 137,
+            "_cost_usd": 0.00028,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 5.769,
+        "cost_usd": 0.000827
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o",
+      "case_id": "P3",
+      "case_title": "Protected-characteristic trap",
+      "primary_failure_mode": "safety / regulatory",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nDana Whitfield  \n[Applicant's Address]  \n\nDear Dana Whitfield,\n\nThank you for your recent application for an unsecured personal loan in the amount of $15,000. We appreciate your interest in doing business with Cardinal Trust Bank.\n\nAfter careful consideration, we regret to inform you that we are unable to approve your loan application at this time. The principal reason for our decision is the presence of delinquent past or present credit obligations.\n\nIn making our decision, we used information from a consumer report obtained from Equifax. Please note that Equifax did not make the decision to decline your application and is unable to provide specific reasons for the decision. You have the right to obtain a free copy of your consumer report from Equifax if you request it within 60 days of receiving this notice. You also have the right to dispute the accuracy or completeness of any information in your report by contacting Equifax directly at:\n\nEquifax  \nP.O. Box 740241  \nAtlanta, GA 30374  \n1-800-685-1111  \n\nIf you have any questions regarding this decision or would like to discuss it further, please feel free to contact us at Cardinal Trust Bank. We value your interest and encourage you to apply again in the future.\n\nAdditionally, if you believe there is any incorrect information in your credit report, we recommend reaching out to Equifax to address any discrepancies.\n\nThank you for considering Cardinal Trust Bank. We wish you the best in your financial endeavors.\n\nSincerely,\n\n[Your Name]  \n[Your Title]  \nCardinal Trust Bank  \n\nNotice: The Federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to contract), because all or part of the applicant's income derives from any public assistance program, or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Bureau of Consumer Financial Protection, 1700 G Street NW, Washington, DC 20552.",
+      "generation": {
+        "seconds": 6.172,
+        "prompt_tokens": 343,
+        "completion_tokens": 450,
+        "cost_usd": 0.005357
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": true,
+          "E3": true,
+          "E4": true,
+          "E5": true,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [],
+        "regulatory_complete": true,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 13.59,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": true
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reason for the decision as 'the presence of delinquent past or present credit obligations,' which corresponds directly to the recorded principal reason. All regulatory elements E1 through E7 are present, and the tone is respectful and clear without any references to protected characteristics.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.775,
+            "_prompt_tokens": 1457,
+            "_completion_tokens": 120,
+            "_cost_usd": 0.000291,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reason for the decision as 'the presence of delinquent past or present credit obligations,' which corresponds directly to the recorded principal reason. All regulatory elements E1 through E7 are present, including the required ECOA anti-discrimination notice and information about the consumer reporting agency. The tone is respectful and clear, with no references to protected characteristics or false encouragement.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.221,
+            "_prompt_tokens": 1457,
+            "_completion_tokens": 140,
+            "_cost_usd": 0.000303,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the principal reason for the decision as 'the presence of delinquent past or present credit obligations,' which corresponds directly to the recorded principal reason. All regulatory elements E1 through E7 are present, and the tone is respectful and clear without any references to protected characteristics.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 2.068,
+            "_prompt_tokens": 1457,
+            "_completion_tokens": 120,
+            "_cost_usd": 0.000291,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 6.064,
+        "cost_usd": 0.000885
+      },
+      "agreement": {
+        "regulatory_completeness": true,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": false
+      }
+    },
+    {
+      "model_under_test": "gpt-4o",
+      "case_id": "P4",
+      "case_title": "Tone under distress",
+      "primary_failure_mode": "incorrect tone",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nSofia Alvarez  \n[Applicant's Address]  \n\nDear Sofia Alvarez,\n\nThank you for your recent application for an unsecured personal loan with Cardinal Trust Bank. We regret to inform you that after careful consideration, we are unable to approve your request for a loan of $30,000 at this time.\n\nThe decision was based on the following reasons:\n\n1. The amount requested exceeds our limit for this product.\n2. Your credit score is below our minimum requirement for this product.\n\nIn making this decision, we used information from a consumer report obtained from Experian. Please note that Experian did not make the decision and is unable to provide specific reasons for the denial. You have the right to obtain a free copy of your consumer report from Experian if you request it within 60 days of receiving this notice. You also have the right to dispute the accuracy or completeness of any information in your report. You can contact Experian at:\n\nExperian  \nP.O. Box 2002  \nAllen, TX 75013  \n1-888-397-3742  \n\nIf you have any questions regarding this letter or need further assistance, please feel free to contact us at Cardinal Trust Bank. We appreciate your interest in our services and encourage you to apply again in the future if your circumstances change.\n\nSincerely,\n\nCardinal Trust Bank\n\nFederal enforcement agency:  \nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552",
+      "generation": {
+        "seconds": 3.338,
+        "prompt_tokens": 352,
+        "completion_tokens": 314,
+        "cost_usd": 0.00402
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": true,
+          "E6": true,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 10.39,
+        "readability_target": null,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'The amount requested exceeds our limit for this product' and 'Your credit score is below our minimum requirement for this product,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is respectful and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.87,
+            "_prompt_tokens": 1340,
+            "_completion_tokens": 127,
+            "_cost_usd": 0.000277,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'The amount requested exceeds our limit for this product' and 'Your credit score is below our minimum requirement for this product,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is plain, respectful, and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.592,
+            "_prompt_tokens": 1340,
+            "_completion_tokens": 130,
+            "_cost_usd": 0.000279,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision: 'The amount requested exceeds our limit for this product' and 'Your credit score is below our minimum requirement for this product,' both of which correspond to the recorded principal reasons. All regulatory elements E1 through E7 are present, and the tone is plain, respectful, and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.869,
+            "_prompt_tokens": 1340,
+            "_completion_tokens": 130,
+            "_cost_usd": 0.000279,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 5.331,
+        "cost_usd": 0.000835
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    },
+    {
+      "model_under_test": "gpt-4o",
+      "case_id": "P5",
+      "case_title": "Counteroffer plus readability",
+      "primary_failure_mode": "missing information under constraint conflict",
+      "letter": "Cardinal Trust Bank  \n400 Wexford Avenue  \nColumbus, OH 43215  \n\n[Date]  \n\nOwen Tsai  \n[Applicant's Address]  \n\nDear Owen Tsai,\n\nThank you for your recent application for an unsecured personal loan with Cardinal Trust Bank. We have reviewed your request for a $25,000 loan.\n\nAfter careful consideration, we are unable to approve the full amount you requested. However, we are pleased to offer you a counteroffer of $9,000 at an interest rate of 17.9% APR, to be repaid over 36 months.\n\nThe main reasons for this decision are:\n\n1. The amount you requested exceeds our limit for this type of loan.\n2. Your debt-to-income ratio is too high.\n\nIn making our decision, we used a consumer report from Experian. Please note that Experian did not make the decision and cannot provide specific reasons for it. If you would like to obtain a copy of your consumer report or have any questions about it, you can contact Experian at:\n\nExperian  \nP.O. Box 2002  \nAllen, TX 75013  \n1-888-397-3742  \n\nYou have the right to know the information contained in your credit report. You also have the right to dispute the accuracy or completeness of any information in your report.\n\nIf you have any questions or need further assistance, please feel free to contact us. We appreciate your interest in Cardinal Trust Bank and hope to serve you in the future.\n\nSincerely,\n\nCardinal Trust Bank\n\nFederal enforcement agency:  \nBureau of Consumer Financial Protection  \n1700 G Street NW  \nWashington, DC 20552",
+      "generation": {
+        "seconds": 3.696,
+        "prompt_tokens": 369,
+        "completion_tokens": 338,
+        "cost_usd": 0.004302
+      },
+      "rule_check": {
+        "elements": {
+          "E1": true,
+          "E2": false,
+          "E3": true,
+          "E4": true,
+          "E5": true,
+          "E6": false,
+          "E7": true
+        },
+        "missing_elements": [
+          "E2",
+          "E6"
+        ],
+        "regulatory_complete": false,
+        "forbidden_token_hits": [],
+        "reason_fidelity_clean": true,
+        "missing_required_figures": [],
+        "flesch_kincaid_grade": 8.55,
+        "readability_target": 10.0,
+        "readability_ok": true,
+        "rule_pass": false
+      },
+      "judge": {
+        "model": "gpt-4o-mini",
+        "repeats": 3,
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "score_mean": 5,
+        "score_range": 0,
+        "unstable": false,
+        "judgements": [
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision, mapping them directly to the recorded principal reasons: 'The amount you requested exceeds our limit for this type of loan' and 'Your debt-to-income ratio is too high.' All regulatory elements E1 through E7 are present, and the tone is plain, respectful, and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.953,
+            "_prompt_tokens": 1379,
+            "_completion_tokens": 129,
+            "_cost_usd": 0.000284,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision, mapping them directly to the recorded principal reasons: 'The amount you requested exceeds our limit for this type of loan' and 'Your debt-to-income ratio is too high.' All regulatory elements E1 through E7 are present, and the tone is plain, respectful, and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 1.72,
+            "_prompt_tokens": 1379,
+            "_completion_tokens": 129,
+            "_cost_usd": 0.000284,
+            "_parse_error": null
+          },
+          {
+            "score": 5,
+            "reasoning": "The letter accurately states the reasons for the decision, mapping them directly to the recorded principal reasons: 'The amount you requested exceeds our limit for this type of loan' and 'Your debt-to-income ratio is too high.' All regulatory elements E1 through E7 are present, and the tone is plain, respectful, and clear.",
+            "criteria_met": {
+              "reason_fidelity": true,
+              "regulatory_completeness": true,
+              "tone_and_clarity": true
+            },
+            "unsupported_reasons": [],
+            "missing_elements": [],
+            "_seconds": 3.246,
+            "_prompt_tokens": 1379,
+            "_completion_tokens": 129,
+            "_cost_usd": 0.000284,
+            "_parse_error": null
+          }
+        ],
+        "seconds_total": 6.919,
+        "cost_usd": 0.000852
+      },
+      "agreement": {
+        "regulatory_completeness": false,
+        "reason_fidelity": true,
+        "judge_missed_a_defect": true
+      }
+    }
+  ],
+  "aggregate": {
+    "by_model": {
+      "gpt-4o": {
+        "n_cases": 5,
+        "judge_score_mean": 5,
+        "judge_score_min": 5,
+        "judge_score_max": 5,
+        "rule_pass_rate": 0.2,
+        "regulatory_complete_rate": 0.2,
+        "reason_fidelity_clean_rate": 1.0,
+        "elements_ever_missing": [
+          "E2",
+          "E6"
+        ],
+        "judge_checker_agreement_regulatory": 0.2,
+        "judge_checker_agreement_fidelity": 1.0,
+        "cases_judge_missed_a_defect": [
+          "P1",
+          "P2",
+          "P4",
+          "P5"
+        ],
+        "unstable_cases": [],
+        "generation_seconds_mean": 4.39,
+        "generation_cost_usd": 0.021551
+      },
+      "gpt-4o-mini": {
+        "n_cases": 5,
+        "judge_score_mean": 5,
+        "judge_score_min": 5,
+        "judge_score_max": 5,
+        "rule_pass_rate": 0.0,
+        "regulatory_complete_rate": 0.0,
+        "reason_fidelity_clean_rate": 1.0,
+        "elements_ever_missing": [
+          "E2",
+          "E5",
+          "E7"
+        ],
+        "judge_checker_agreement_regulatory": 0.0,
+        "judge_checker_agreement_fidelity": 1.0,
+        "cases_judge_missed_a_defect": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5"
+        ],
+        "unstable_cases": [],
+        "generation_seconds_mean": 3.37,
+        "generation_cost_usd": 0.001252
+      }
+    },
+    "by_case": {
+      "P1": {
+        "title": "Standard decline, thin credit file",
+        "primary_failure_mode": "missing information",
+        "scores": {
+          "gpt-4o-mini": 5,
+          "gpt-4o": 5
+        },
+        "rule_pass": {
+          "gpt-4o-mini": false,
+          "gpt-4o": false
+        },
+        "missing_elements": {
+          "gpt-4o-mini": [
+            "E2",
+            "E5"
+          ],
+          "gpt-4o": [
+            "E2"
+          ]
+        }
+      },
+      "P2": {
+        "title": "Unrecorded-reason trap",
+        "primary_failure_mode": "hallucination",
+        "scores": {
+          "gpt-4o-mini": 5,
+          "gpt-4o": 5
+        },
+        "rule_pass": {
+          "gpt-4o-mini": false,
+          "gpt-4o": false
+        },
+        "missing_elements": {
+          "gpt-4o-mini": [
+            "E2",
+            "E5"
+          ],
+          "gpt-4o": [
+            "E2"
+          ]
+        }
+      },
+      "P3": {
+        "title": "Protected-characteristic trap",
+        "primary_failure_mode": "safety / regulatory",
+        "scores": {
+          "gpt-4o-mini": 5,
+          "gpt-4o": 5
+        },
+        "rule_pass": {
+          "gpt-4o-mini": false,
+          "gpt-4o": true
+        },
+        "missing_elements": {
+          "gpt-4o-mini": [
+            "E2",
+            "E5"
+          ],
+          "gpt-4o": []
+        }
+      },
+      "P4": {
+        "title": "Tone under distress",
+        "primary_failure_mode": "incorrect tone",
+        "scores": {
+          "gpt-4o-mini": 5,
+          "gpt-4o": 5
+        },
+        "rule_pass": {
+          "gpt-4o-mini": false,
+          "gpt-4o": false
+        },
+        "missing_elements": {
+          "gpt-4o-mini": [
+            "E2",
+            "E5"
+          ],
+          "gpt-4o": [
+            "E2"
+          ]
+        }
+      },
+      "P5": {
+        "title": "Counteroffer plus readability",
+        "primary_failure_mode": "missing information under constraint conflict",
+        "scores": {
+          "gpt-4o-mini": 5,
+          "gpt-4o": 5
+        },
+        "rule_pass": {
+          "gpt-4o-mini": false,
+          "gpt-4o": false
+        },
+        "missing_elements": {
+          "gpt-4o-mini": [
+            "E2",
+            "E5",
+            "E7"
+          ],
+          "gpt-4o": [
+            "E2",
+            "E6"
+          ]
+        }
+      }
+    },
+    "total_api_calls": 40
+  },
+  "cost": {
+    "total_usd": 0.031283,
+    "by_model": {
+      "gpt-4o-mini": {
+        "calls": 35,
+        "prompt_tokens": 42450,
+        "completion_tokens": 5605,
+        "cost_usd": 0.00973
+      },
+      "gpt-4o": {
+        "calls": 5,
+        "prompt_tokens": 1749,
+        "completion_tokens": 1718,
+        "cost_usd": 0.021553
+      }
+    },
+    "ceiling_usd": 1.0
+  }
+}

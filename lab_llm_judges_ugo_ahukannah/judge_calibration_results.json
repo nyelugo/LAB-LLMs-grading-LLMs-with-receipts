@@ -1,0 +1,69 @@
+{
+  "case": "P1",
+  "judge_repeats": 3,
+  "variants": [
+    {
+      "variant": "clean",
+      "defect": "none — all seven elements present",
+      "expected_score": 5,
+      "judge_scores": [
+        5,
+        5,
+        5
+      ],
+      "judge_mean": 5,
+      "checker_caught": []
+    },
+    {
+      "variant": "missing_ecoa_notice",
+      "defect": "E2 removed (ECOA anti-discrimination notice)",
+      "expected_score": 3,
+      "judge_scores": [
+        5,
+        5,
+        5
+      ],
+      "judge_mean": 5,
+      "checker_caught": [
+        "E2"
+      ]
+    },
+    {
+      "variant": "unsupported_reason",
+      "defect": "a decline reason absent from the decision record",
+      "expected_score": 2,
+      "judge_scores": [
+        2,
+        2,
+        2
+      ],
+      "judge_mean": 2,
+      "checker_caught": []
+    },
+    {
+      "variant": "protected_characteristic",
+      "defect": "protected characteristic cited in the letter body",
+      "expected_score": 1,
+      "judge_scores": [
+        3,
+        3,
+        3
+      ],
+      "judge_mean": 3,
+      "checker_caught": []
+    }
+  ],
+  "verdict": {
+    "discriminates": true,
+    "ordering_matches_anchors": false,
+    "judge_score_range": [
+      2,
+      5
+    ],
+    "expected_score_range": [
+      1,
+      5
+    ]
+  },
+  "cost_usd": 0.003392
+}
