@@ -61,7 +61,9 @@ version of that finding.
 | [`rule_checker.py`](rule_checker.py) | Deterministic verification — no API calls, no opinions |
 | [`judge_calibration.py`](judge_calibration.py) | Extension: one injected defect per variant, mapped to score anchors |
 | [`test_rule_checker.py`](test_rule_checker.py) | Controls proving the checker discriminates (6/6 passing) |
-| `evaluation_results.json` | Full run output — every letter, both verdicts, tokens, latency, cost |
+| [`tips_and_troubleshooting.md`](tips_and_troubleshooting.md) | The four issues the lab warns about, what each looked like here, and two it does not warn about |
+| [`extension_activities.md`](extension_activities.md) | Which optional extensions were completed, which was not, and why |
+| `evaluation_results.json` | Full run output — opens with a plain-language `summary`, then every letter, both verdicts, tokens, latency, cost |
 | `judge_calibration_results.json` | Calibration study output |
 
 ## Running it
@@ -79,6 +81,68 @@ Double-clickable launchers are provided for each: `run_*.command` (macOS) and
 
 Useful flags: `--repeats N` (judge runs per letter, default 3), `--models a,b`,
 `--out path`. A cost ledger aborts the run at a $1 ceiling.
+
+### What a run looks like
+
+```
+$ python llm_judge_evaluation.py
+Running 5 cases x 2 models, judge repeats 3...
+  gpt-4o-mini    P1  Standard decline, thin credit file
+  ...
+
+==============================================================================
+CARDINAL TRUST BANK — ADVERSE-ACTION NOTICE EVALUATION
+==============================================================================
+Cases 5   models gpt-4o-mini, gpt-4o   judge gpt-4o-mini x3 @ T=0
+Wall time 98.58s   API calls 40   total cost $0.0313
+
+------------------------------------------------------------------------------
+PER-CASE SCORES (judge mean of 3, and deterministic rule verdict)
+------------------------------------------------------------------------------
+case failure mode                                gpt-4o-mini           gpt-4o
+P1   missing information                      5.0  RULE FAIL   5.0  RULE FAIL
+P2   hallucination                            5.0  RULE FAIL   5.0  RULE FAIL
+P3   safety / regulatory                      5.0  RULE FAIL   5.0  RULE PASS
+P4   incorrect tone                           5.0  RULE FAIL   5.0  RULE FAIL
+P5   missing information under constraint     5.0  RULE FAIL   5.0  RULE FAIL
+
+  gpt-4o-mini
+    judge score        5/5 (min 5, max 5)
+    rule pass rate     0%
+    reg. complete      0%   elements ever missing: ['E2', 'E5', 'E7']
+    reason fidelity    100%
+    judge vs checker   regulatory 0%   fidelity 100%
+    ** JUDGE MISSED A DEFECT the checker caught: P1, P2, P3, P4, P5
+```
+
+**Files it produces**
+
+| Command | Writes |
+|---|---|
+| `llm_judge_evaluation.py` | `evaluation_results.json` — `summary`, `run`, per-letter `results`, `aggregate`, `cost` |
+| `judge_calibration.py` | `judge_calibration_results.json` — per-variant scores against the rubric anchors |
+| `llm_judge_evaluation.ipynb` | the two charts in `figures/`, plus both JSON files |
+| `test_rule_checker.py` | nothing — prints `6/6 passed` and exits 0 |
+
+`evaluation_results.json` opens with a plain-language summary before the detail:
+
+```json
+{
+  "summary": {
+    "headline": "An LLM judge gave near-perfect scores to letters that a
+                 deterministic compliance checker rejected. ...",
+    "key_findings": ["9 of 10 letters were missing the ECOA anti-discrimination
+                      notice (E2), the most common defect in the run.", "..."],
+    "recommendation": "Use gpt-4o-mini with the statutory disclosure text
+                       supplied as a fixed template ...",
+    "caveats": ["The seven-element checklist is a reconstruction ..."]
+  },
+  "run": { "...": "..." }, "results": ["..."], "aggregate": {}, "cost": {}
+}
+```
+
+Every field there is computed from the run by `build_summary()`, not written by
+hand, so it cannot drift out of step with the numbers underneath it.
 
 ## API keys
 

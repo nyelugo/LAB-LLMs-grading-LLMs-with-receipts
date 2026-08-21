@@ -26,6 +26,7 @@ Author: Nnanyelugo Ahukannah
 from __future__ import annotations
 
 import argparse
+import collections
 import json
 import os
 import statistics
@@ -368,8 +369,7 @@ def evaluate(models: list[str], repeats: int) -> dict:
             )
 
     finished = datetime.now(timezone.utc)
-    return {
-        "run": {
+    run_meta = {
             "started_utc": started.isoformat(),
             "finished_utc": finished.isoformat(),
             "wall_seconds": round((finished - started).total_seconds(), 2),
@@ -385,14 +385,113 @@ def evaluate(models: list[str], repeats: int) -> dict:
                 "are derived from reported token counts and these rates, not "
                 "billed amounts."
             ),
-        },
+    }
+    agg = aggregate(results, ledger)
+    return {
+        "summary": build_summary(results, agg, run_meta, ledger.total_cost),
+        "run": run_meta,
         "results": results,
-        "aggregate": aggregate(results, ledger),
+        "aggregate": agg,
         "cost": {
             "total_usd": round(ledger.total_cost, 6),
             "by_model": ledger.by_model(),
             "ceiling_usd": RUN_COST_CEILING_USD,
         },
+    }
+
+
+def build_summary(results: list[dict], agg: dict, run: dict, total_cost: float) -> dict:
+    """A plain-language top-level summary of the run.
+
+    Sits at the top of evaluation_results.json so a reader who opens the file
+    cold gets the finding before the per-example detail. Every number is derived
+    from the run rather than written by hand, so it cannot drift out of step with
+    the results underneath it.
+    """
+    n = len(results)
+    models = run["models_under_test"]
+    element_names = {
+        "E1": "the specific principal reasons", "E2": "the ECOA anti-discrimination notice",
+        "E3": "the federal enforcement agency's name and address",
+        "E4": "the credit bureau's name, address and toll-free number",
+        "E5": "the statement that the bureau did not make the decision",
+        "E6": "the right to a free copy of the report within 60 days",
+        "E7": "the right to dispute inaccuracies",
+    }
+    missing = collections.Counter(
+        e for r in results for e in r["rule_check"]["missing_elements"]
+    )
+    worst = missing.most_common(1)[0] if missing else None
+    judge_means = [r["judge"]["score_mean"] for r in results]
+    rule_passes = sum(r["rule_check"]["rule_pass"] for r in results)
+    unstable = sum(r["judge"]["unstable"] for r in results)
+
+    per_letter = {
+        m: round(agg["by_model"][m]["generation_cost_usd"] / agg["by_model"][m]["n_cases"], 6)
+        for m in models
+    }
+    cheapest = min(per_letter, key=per_letter.get)
+    dearest = max(per_letter, key=per_letter.get)
+
+    findings = []
+    if worst:
+        code, count = worst
+        findings.append(
+            f"{count} of {n} letters were missing {element_names.get(code, code)} "
+            f"({code}), the most common defect in the run."
+        )
+    span = (f"{min(judge_means)} out of 5" if min(judge_means) == max(judge_means)
+            else f"between {min(judge_means)} and {max(judge_means)} out of 5")
+    findings.append(
+        f"The LLM judge scored every letter {span} while the deterministic checker "
+        f"passed only {rule_passes} of {n}. The judge agreed with the checker on reason "
+        "fidelity and not on regulatory completeness."
+    )
+    findings.append(
+        f"No model invented a decline reason: reason fidelity was clean on "
+        f"{sum(r['rule_check']['reason_fidelity_clean'] for r in results)} of {n} letters."
+    )
+    findings.append(
+        f"Judge scores were stable across {run['judge_repeats']} repeats at temperature 0 "
+        f"({unstable} of {n} letters varied by more than one point), so the disagreement "
+        "with the checker is a consistent bias rather than noise."
+    )
+    if len(models) > 1 and per_letter[cheapest] > 0:
+        findings.append(
+            f"{dearest} costs {per_letter[dearest] / per_letter[cheapest]:.1f}x more per "
+            f"letter than {cheapest} (${per_letter[dearest]:.6f} vs "
+            f"${per_letter[cheapest]:.6f})."
+        )
+
+    return {
+        "headline": (
+            "An LLM judge gave near-perfect scores to letters that a deterministic "
+            "compliance checker rejected. Fluency and factual fidelity were fine; "
+            "mandatory legal disclosures were missing, and the judge did not notice."
+        ),
+        "what_was_measured": (
+            f"{n} adverse-action decline letters ({len(models)} model(s) x "
+            f"{run['n_cases']} test cases), each scored twice: once by an LLM judge "
+            f"({run['judge_model']}, temperature 0, {run['judge_repeats']} repeats) and "
+            "once by a deterministic Python checker with no model in it."
+        ),
+        "key_findings": findings,
+        "recommendation": (
+            f"Use {cheapest} with the statutory disclosure text supplied as a fixed "
+            "template rather than generated, and gate despatch on the deterministic "
+            "element check. Do not ship an LLM-judge-only gate."
+        ),
+        "caveats": [
+            "The seven-element checklist is a reconstruction of Regulation B and FCRA "
+            "s615(a) for a teaching exercise. It is not legal advice and has not been "
+            "reviewed by counsel.",
+            "Five test cases on one product is a probe, not an assurance.",
+            "Letters vary between runs even at temperature 0 with a pinned seed, so "
+            "individual element counts are indicative; the direction of the finding "
+            "held across every run.",
+            f"Cost figures are derived from reported token counts and list prices, not "
+            f"billed amounts; total for this run was ${total_cost:.4f}.",
+        ],
     }
 
 

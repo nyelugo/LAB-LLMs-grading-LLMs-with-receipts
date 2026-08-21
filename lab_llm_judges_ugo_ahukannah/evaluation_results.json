@@ -1,4 +1,22 @@
 {
+  "summary": {
+    "headline": "An LLM judge gave near-perfect scores to letters that a deterministic compliance checker rejected. Fluency and factual fidelity were fine; mandatory legal disclosures were missing, and the judge did not notice.",
+    "what_was_measured": "10 adverse-action decline letters (2 model(s) x 5 test cases), each scored twice: once by an LLM judge (gpt-4o-mini, temperature 0, 3 repeats) and once by a deterministic Python checker with no model in it.",
+    "key_findings": [
+      "9 of 10 letters were missing the ECOA anti-discrimination notice (E2), the most common defect in the run.",
+      "The LLM judge scored every letter 5 out of 5 while the deterministic checker passed only 1 of 10. The judge agreed with the checker on reason fidelity and not on regulatory completeness.",
+      "No model invented a decline reason: reason fidelity was clean on 10 of 10 letters.",
+      "Judge scores were stable across 3 repeats at temperature 0 (0 of 10 letters varied by more than one point), so the disagreement with the checker is a consistent bias rather than noise.",
+      "gpt-4o costs 17.2x more per letter than gpt-4o-mini ($0.004310 vs $0.000250)."
+    ],
+    "recommendation": "Use gpt-4o-mini with the statutory disclosure text supplied as a fixed template rather than generated, and gate despatch on the deterministic element check. Do not ship an LLM-judge-only gate.",
+    "caveats": [
+      "The seven-element checklist is a reconstruction of Regulation B and FCRA s615(a) for a teaching exercise. It is not legal advice and has not been reviewed by counsel.",
+      "Five test cases on one product is a probe, not an assurance.",
+      "Letters vary between runs even at temperature 0 with a pinned seed, so individual element counts are indicative; the direction of the finding held across every run.",
+      "Cost figures are derived from reported token counts and list prices, not billed amounts; total for this run was $0.0313."
+    ]
+  },
   "run": {
     "started_utc": "2026-08-21T12:57:04.683285+00:00",
     "finished_utc": "2026-08-21T12:58:43.262676+00:00",

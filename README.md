@@ -35,7 +35,9 @@ The two-minute version:
 | [`lab_llm_judges_ugo_ahukannah/`](lab_llm_judges_ugo_ahukannah/) | Every lab deliverable — the four Part 1 markdown documents, the Python implementation, the executed notebook, and the JSON results |
 | `lab_llm_judges_ugo_ahukannah/*.md` | Benchmark audit, evaluation design, client memo, reflection, implementation summary |
 | `lab_llm_judges_ugo_ahukannah/*.py` | Pipeline, test cases, rule checker, calibration study, tests |
-| `lab_llm_judges_ugo_ahukannah/*.json` | Run outputs, including every generated letter and both graders' verdicts |
+| `lab_llm_judges_ugo_ahukannah/*.json` | Run outputs, including every generated letter and both graders' verdicts; `evaluation_results.json` opens with a plain-language summary |
+| [`tips_and_troubleshooting.md`](lab_llm_judges_ugo_ahukannah/tips_and_troubleshooting.md) | The four issues the lab warns about, what each looked like in this run, and two it does not warn about |
+| [`extension_activities.md`](lab_llm_judges_ugo_ahukannah/extension_activities.md) | Which optional extensions were completed, which was not, and why |
 | `lab_llm_judges_ugo_ahukannah/run_*.command` / `.bat` | Double-clickable launchers, macOS and Windows |
 
 The folder name follows the submission format in the lab brief
@@ -54,8 +56,21 @@ The folder name follows the submission format in the lab brief
 | 11 — client scenario | [`benchmark_audit.md`](lab_llm_judges_ugo_ahukannah/benchmark_audit.md) |
 | 16 — reflection | [`reflection.md`](lab_llm_judges_ugo_ahukannah/reflection.md) |
 
-Extension activities completed: model comparison (`gpt-4o-mini` vs `gpt-4o`) and a
-calibration study ([`judge_calibration.py`](lab_llm_judges_ugo_ahukannah/judge_calibration.py)).
+## Extension activities
+
+| Extension | Status | Where |
+|---|---|---|
+| Compare two models | **done** | `gpt-4o-mini` vs `gpt-4o`, all five cases, same graders |
+| Calibration study | **done** | [`judge_calibration.py`](lab_llm_judges_ugo_ahukannah/judge_calibration.py) — one injected defect per variant, mapped to rubric anchors |
+| Cost optimization | **done** | Per-call tokens and cost, 17.2x per-letter gap, judging = 27% of run cost |
+| Human evaluation | **not done** | The honest gap — tone is the one criterion with no ground truth, so it is the one place a human is not optional |
+
+Full write-up, including three things built beyond the lab's list, in
+[`extension_activities.md`](lab_llm_judges_ugo_ahukannah/extension_activities.md).
+
+Issues encountered and how they were handled — JSON parsing, judge variance, API
+cost, judge strictness — are in
+[`tips_and_troubleshooting.md`](lab_llm_judges_ugo_ahukannah/tips_and_troubleshooting.md).
 
 ## Keys
 
